@@ -1,10 +1,10 @@
 import asyncio
 import logging
-
+import sys
 import aiomysql
 from typing import Optional
 
-logging.basicConfig(level=logging.INFO)
+logging.basicConfig(level=logging.INFO, stream=sys.stderr)
 logger = logging.getLogger('mysql_mcp_dolphin')
 
 

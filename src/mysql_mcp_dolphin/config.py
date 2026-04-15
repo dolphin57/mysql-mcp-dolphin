@@ -1,10 +1,21 @@
 import os
 from typing import Dict
+from pathlib import Path
 from dotenv import load_dotenv
 
 
 def load_config() -> Dict[str, str]:
-    load_dotenv()
+    """
+    加载配置，只从当前模块目录查找 .env 文件
+    """
+    # 只从模块目录查找
+    module_dir = Path(__file__).parent.absolute()
+    env_path = module_dir / '.env'
+
+    # 加载配置文件（如果存在）
+    if env_path.exists():
+        load_dotenv(dotenv_path=env_path)
+
     return {
         "host": os.getenv("MYSQL_HOST", "localhost"),
         "port": int(os.getenv("MYSQL_PORT", 3306)),
