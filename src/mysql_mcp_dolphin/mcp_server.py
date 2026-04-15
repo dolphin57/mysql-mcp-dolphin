@@ -43,7 +43,7 @@ async def _execute_single_sql(sql: str):
     column_comment = {}
     sql_list = [sql_.strip() for sql_ in sql.strip().split(';') if sql_.strip()]
     for sql in sql_list:
-        first_word = sql.split('', 1)[0].upper()
+        first_word = sql.split(' ', 1)[0].upper()
         has_select = True if 'SELECT' == first_word else False
         if first_word not in PERMISSIONS[role]:
             results.append(f"当前角色：{role} 权限不足,无权执行操作:{sql}")
